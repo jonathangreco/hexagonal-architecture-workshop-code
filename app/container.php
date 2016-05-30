@@ -1,7 +1,7 @@
 <?php
 
 use Interop\Container\ContainerInterface;
-use Meetup\Domain\Model\MeetupRepository;
+use Meetup\Infrastructure\Storage\FileSystem\FileSystemBasedMeetupRepository;
 use Meetup\Infrastructure\Web\ListMeetupsController;
 use Meetup\Infrastructure\Web\ScheduleMeetupController;
 use Meetup\Infrastructure\Web\View\TwigTemplates;
@@ -81,8 +81,8 @@ $container[UrlHelper::class] = function (ContainerInterface $container) {
 /*
  * Persistence
  */
-$container[MeetupRepository::class] = function () {
-    return new MeetupRepository(__DIR__ . '/../var/meetups.txt');
+$container[FileSystemBasedMeetupRepository::class] = function () {
+    return new FileSystemBasedMeetupRepository(__DIR__ . '/../var/meetups.txt');
 };
 
 /*
@@ -92,12 +92,12 @@ $container[ScheduleMeetupController::class] = function (ContainerInterface $cont
     return new ScheduleMeetupController(
         $container->get(TemplateRendererInterface::class),
         $container->get(RouterInterface::class),
-        $container->get(MeetupRepository::class)
+        $container->get(FileSystemBasedMeetupRepository::class)
     );
 };
 $container[ListMeetupsController::class] = function (ContainerInterface $container) {
     return new ListMeetupsController(
-        $container->get(MeetupRepository::class),
+        $container->get(FileSystemBasedMeetupRepository::class),
         $container->get(TemplateRendererInterface::class),
         $container->get(RouterInterface::class)
     );
@@ -108,7 +108,7 @@ $container[ListMeetupsController::class] = function (ContainerInterface $contain
  */
 $container[\Meetup\Infrastructure\Cli\ScheduleMeetupConsoleHandler::class] = function (ContainerInterface $container) {
     return new \Meetup\Infrastructure\Cli\ScheduleMeetupConsoleHandler(
-        $container->get(MeetupRepository::class)
+        $container->get(FileSystemBasedMeetupRepository::class)
     );
 };
 

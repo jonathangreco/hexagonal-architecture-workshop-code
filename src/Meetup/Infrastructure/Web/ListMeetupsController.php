@@ -2,6 +2,7 @@
 
 namespace Meetup\Infrastructure\Web;
 
+use Meetup\Infrastructure\Storage\FileSystem\FileSystemBasedMeetupRepository;
 use Meetup\Domain\Model\MeetupRepository;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
