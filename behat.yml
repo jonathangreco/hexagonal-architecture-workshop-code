@@ -15,3 +15,7 @@ default:
             contexts:
                 - Tests\Functional\FeatureContext
                 - Behat\MinkExtension\Context\MinkContext
+        acceptance:
+            paths: [ "%paths.base%/test/acceptance/features"]
+            contexts:
+                - Tests\Acceptance\FeatureContext
