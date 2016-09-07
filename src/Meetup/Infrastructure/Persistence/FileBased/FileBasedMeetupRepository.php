@@ -4,8 +4,9 @@ namespace Meetup\Infrastructure\Persistence\FileBased;
 
 use Meetup\Domain\Model\Meetup;
 use Meetup\Domain\Model\MeetupId;
+use Meetup\Domain\Model\MeetupRepository;
 
-class MeetupRepository
+class FileBasedMeetupRepository implements MeetupRepository
 {
     /**
      * @var string

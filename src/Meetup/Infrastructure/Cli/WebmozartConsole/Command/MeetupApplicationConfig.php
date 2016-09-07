@@ -3,7 +3,6 @@
 namespace Meetup\Infrastructure\Cli\WebmozartConsole\Command;
 
 use Interop\Container\ContainerInterface;
-use Meetup\Infrastructure\Cli\WebmozartConsole\Command\ScheduleMeetupConsoleHandler;
 use Webmozart\Console\Api\Args\Format\Argument;
 use Webmozart\Console\Api\Formatter\Style;
 use Webmozart\Console\Config\DefaultApplicationConfig;

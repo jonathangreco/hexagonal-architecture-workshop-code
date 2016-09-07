@@ -5,8 +5,8 @@ namespace Meetup\Application;
 use Meetup\Domain\Model\Description;
 use Meetup\Domain\Model\Meetup;
 use Meetup\Domain\Model\MeetupId;
+use Meetup\Domain\Model\MeetupRepository;
 use Meetup\Domain\Model\Name;
-use Meetup\Infrastructure\Persistence\FileBased\MeetupRepository;
 
 final class ScheduleMeetupHandler
 {
