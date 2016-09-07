@@ -2,10 +2,10 @@
 
 namespace Meetup\Infrastructure\Cli\WebmozartConsole\Command;
 
+use Meetup\Application\ScheduleMeetupHandler;
 use Meetup\Domain\Model\Description;
 use Meetup\Domain\Model\Meetup;
 use Meetup\Domain\Model\MeetupId;
-use Meetup\Infrastructure\Persistence\FileBased\MeetupRepository;
 use Meetup\Domain\Model\Name;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Console\Api\Args\Args;
@@ -14,24 +14,23 @@ use Webmozart\Console\Api\IO\IO;
 class ScheduleMeetupConsoleHandler
 {
     /**
-     * @var MeetupRepository
+     * @var ScheduleMeetupHandler
      */
-    private $repository;
+    private $handler;
 
-    public function __construct(MeetupRepository $repository)
+    public function __construct(ScheduleMeetupHandler $handler)
     {
-        $this->repository = $repository;
+        $this->handler = $handler;
     }
 
     public function handle(Args $args, IO $io)
     {
-        $meetup = Meetup::schedule(
-            MeetupId::fromString((string) Uuid::uuid4()),
-            Name::fromString($args->getArgument('name')),
-            Description::fromString($args->getArgument('description')),
-            new \DateTimeImmutable($args->getArgument('scheduledFor'))
+        $this->handler->__invoke(
+            (string) Uuid::uuid4(),
+            $args->getArgument('name'),
+            $args->getArgument('description'),
+            $args->getArgument('scheduledFor')
         );
-        $this->repository->add($meetup);
 
         $io->writeLine('<success>Scheduled the meetup successfully</success>');
         

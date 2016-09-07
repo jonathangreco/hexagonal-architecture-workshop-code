@@ -1,6 +1,7 @@
 <?php
 
 use Interop\Container\ContainerInterface;
+use Meetup\Application\ScheduleMeetupHandler;
 use Meetup\Infrastructure\Persistence\FileBased\MeetupRepository;
 use Meetup\Infrastructure\Web\ZendExpressive\Controller\ListMeetupsController;
 use Meetup\Infrastructure\Web\ZendExpressive\Controller\ScheduleMeetupController;
@@ -92,7 +93,7 @@ $container[ScheduleMeetupController::class] = function (ContainerInterface $cont
     return new ScheduleMeetupController(
         $container->get(TemplateRendererInterface::class),
         $container->get(RouterInterface::class),
-        $container->get(MeetupRepository::class)
+        $container->get(ScheduleMeetupHandler::class)
     );
 };
 $container[ListMeetupsController::class] = function (ContainerInterface $container) {
@@ -108,6 +109,15 @@ $container[ListMeetupsController::class] = function (ContainerInterface $contain
  */
 $container[\Meetup\Infrastructure\Cli\WebmozartConsole\Command\ScheduleMeetupConsoleHandler::class] = function (ContainerInterface $container) {
     return new \Meetup\Infrastructure\Cli\WebmozartConsole\Command\ScheduleMeetupConsoleHandler(
+        $container->get(ScheduleMeetupHandler::class)
+    );
+};
+
+/**
+ * Application use cases
+ */
+$container[ScheduleMeetupHandler::class] = function (ContainerInterface $container) {
+    return new ScheduleMeetupHandler(
         $container->get(MeetupRepository::class)
     );
 };

@@ -2,6 +2,7 @@
 
 namespace Meetup\Infrastructure\Web\ZendExpressive\Controller;
 
+use Meetup\Application\ScheduleMeetupHandler;
 use Meetup\Domain\Model\Description;
 use Meetup\Domain\Model\Meetup;
 use Meetup\Domain\Model\MeetupId;
@@ -20,21 +21,24 @@ class ScheduleMeetupController
      * @var TemplateRendererInterface
      */
     private $renderer;
-    
+
     /**
      * @var RouterInterface
      */
     private $router;
     /**
-     * @var MeetupRepository
+     * @var ScheduleMeetupHandler
      */
-    private $repository;
+    private $handler;
 
-    public function __construct(TemplateRendererInterface $renderer, RouterInterface $router, MeetupRepository $repository)
-    {
+    public function __construct(
+        TemplateRendererInterface $renderer,
+        RouterInterface $router,
+        ScheduleMeetupHandler $handler
+    ) {
         $this->renderer = $renderer;
         $this->router = $router;
-        $this->repository = $repository;
+        $this->handler = $handler;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
@@ -42,13 +46,12 @@ class ScheduleMeetupController
         if ($request->getMethod() === 'POST') {
             $submittedData = $request->getParsedBody();
 
-            $meetup = Meetup::schedule(
-                MeetupId::fromString((string) Uuid::uuid4()),
-                Name::fromString($submittedData['name']),
-                Description::fromString($submittedData['description']),
-                new \DateTimeImmutable($submittedData['scheduledFor'])
+            $this->handler->__invoke(
+                (string)Uuid::uuid4(),
+                $submittedData['name'],
+                $submittedData['description'],
+                $submittedData['scheduledFor']
             );
-            $this->repository->add($meetup);
 
             return new RedirectResponse($this->router->generateUri('list_meetups'));
         } else {
