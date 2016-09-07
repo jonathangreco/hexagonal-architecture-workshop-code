@@ -3,10 +3,6 @@
 namespace Meetup\Infrastructure\Cli\WebmozartConsole\Command;
 
 use Meetup\Application\ScheduleMeetupHandler;
-use Meetup\Domain\Model\Description;
-use Meetup\Domain\Model\Meetup;
-use Meetup\Domain\Model\MeetupId;
-use Meetup\Domain\Model\Name;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Console\Api\Args\Args;
 use Webmozart\Console\Api\IO\IO;
