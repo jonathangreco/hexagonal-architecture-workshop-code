@@ -1,11 +1,11 @@
 <?php
 
-namespace Meetup\Infrastructure\Controller;
+namespace Meetup\Infrastructure\Web\ZendExpressive\Controller;
 
 use Meetup\Domain\Model\Description;
 use Meetup\Domain\Model\Meetup;
 use Meetup\Domain\Model\MeetupId;
-use Meetup\Infrastructure\Persistence\MeetupRepository;
+use Meetup\Infrastructure\Persistence\FileBased\MeetupRepository;
 use Meetup\Domain\Model\Name;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

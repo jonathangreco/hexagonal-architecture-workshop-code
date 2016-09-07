@@ -1,6 +1,6 @@
 <?php
 
-namespace Meetup\Infrastructure\Persistence;
+namespace Meetup\Infrastructure\Persistence\FileBased;
 
 use Meetup\Domain\Model\Meetup;
 use Meetup\Domain\Model\MeetupId;

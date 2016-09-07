@@ -3,7 +3,7 @@
 namespace Tests\Integration\Meetup\Infrastructure\Persistence\Filesystem;
 
 use Meetup\Domain\Model\MeetupId;
-use Meetup\Infrastructure\Persistence\MeetupRepository;
+use Meetup\Infrastructure\Persistence\FileBased\MeetupRepository;
 use Tests\Unit\Meetup\Domain\Model\Util\MeetupFactory;
 
 class MeetupRepositoryTest extends \PHPUnit_Framework_TestCase
