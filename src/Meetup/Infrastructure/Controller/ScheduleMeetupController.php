@@ -1,12 +1,12 @@
 <?php
 
-namespace Meetup\Controller;
+namespace Meetup\Infrastructure\Controller;
 
-use Meetup\Model\Description;
-use Meetup\Model\Meetup;
-use Meetup\Model\MeetupId;
-use Meetup\Model\MeetupRepository;
-use Meetup\Model\Name;
+use Meetup\Domain\Model\Description;
+use Meetup\Domain\Model\Meetup;
+use Meetup\Domain\Model\MeetupId;
+use Meetup\Infrastructure\Persistence\MeetupRepository;
+use Meetup\Domain\Model\Name;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Ramsey\Uuid\Uuid;

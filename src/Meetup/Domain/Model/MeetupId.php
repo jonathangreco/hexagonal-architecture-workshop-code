@@ -1,6 +1,6 @@
 <?php
 
-namespace Meetup\Model;
+namespace Meetup\Domain\Model;
 
 final class MeetupId extends AggregateId
 {

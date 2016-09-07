@@ -1,9 +1,9 @@
 <?php
 
-namespace Meetup\Command;
+namespace Meetup\Infrastructure\Command;
 
 use Interop\Container\ContainerInterface;
-use Meetup\Command\ScheduleMeetupConsoleHandler;
+use Meetup\Infrastructure\Command\ScheduleMeetupConsoleHandler;
 use Webmozart\Console\Api\Args\Format\Argument;
 use Webmozart\Console\Api\Formatter\Style;
 use Webmozart\Console\Config\DefaultApplicationConfig;

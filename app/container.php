@@ -1,10 +1,10 @@
 <?php
 
 use Interop\Container\ContainerInterface;
-use Meetup\Model\MeetupRepository;
-use Meetup\Controller\ListMeetupsController;
-use Meetup\Controller\ScheduleMeetupController;
-use Meetup\Resources\Views\TwigTemplates;
+use Meetup\Infrastructure\Persistence\MeetupRepository;
+use Meetup\Infrastructure\Controller\ListMeetupsController;
+use Meetup\Infrastructure\Controller\ScheduleMeetupController;
+use Meetup\Infrastructure\Controller\Resources\Views\TwigTemplates;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Debug\Debug;
@@ -106,8 +106,8 @@ $container[ListMeetupsController::class] = function (ContainerInterface $contain
 /**
  * CLI
  */
-$container[\Meetup\Command\ScheduleMeetupConsoleHandler::class] = function (ContainerInterface $container) {
-    return new \Meetup\Command\ScheduleMeetupConsoleHandler(
+$container[\Meetup\Infrastructure\Command\ScheduleMeetupConsoleHandler::class] = function (ContainerInterface $container) {
+    return new \Meetup\Infrastructure\Command\ScheduleMeetupConsoleHandler(
         $container->get(MeetupRepository::class)
     );
 };

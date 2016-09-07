@@ -1,6 +1,9 @@
 <?php
 
-namespace Meetup\Model;
+namespace Meetup\Infrastructure\Persistence;
+
+use Meetup\Domain\Model\Meetup;
+use Meetup\Domain\Model\MeetupId;
 
 class MeetupRepository
 {

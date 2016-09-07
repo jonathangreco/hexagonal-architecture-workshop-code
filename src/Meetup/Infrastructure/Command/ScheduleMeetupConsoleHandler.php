@@ -1,12 +1,12 @@
 <?php
 
-namespace Meetup\Command;
+namespace Meetup\Infrastructure\Command;
 
-use Meetup\Model\Description;
-use Meetup\Model\Meetup;
-use Meetup\Model\MeetupId;
-use Meetup\Model\MeetupRepository;
-use Meetup\Model\Name;
+use Meetup\Domain\Model\Description;
+use Meetup\Domain\Model\Meetup;
+use Meetup\Domain\Model\MeetupId;
+use Meetup\Infrastructure\Persistence\MeetupRepository;
+use Meetup\Domain\Model\Name;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Console\Api\Args\Args;
 use Webmozart\Console\Api\IO\IO;
